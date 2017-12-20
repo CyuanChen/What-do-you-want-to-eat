@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Map View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="WhatDoYouWanTtoEat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="67H-Ic-YQ9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yE-NT-Hvp">
+                                <rect key="frame" x="309" y="597" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Agw-TD-83b"/>
+                                    <constraint firstAttribute="height" constant="50" id="XKD-r0-u4M"/>
+                                </constraints>
+                                <state key="normal" image="locationButton"/>
+                                <connections>
+                                    <action selector="centerMapButtonWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="07d-o6-FaL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqa-ti-cXT">
+                                <rect key="frame" x="309" y="527" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="QBL-vC-0aV"/>
+                                    <constraint firstAttribute="height" constant="50" id="RFT-rg-ODk"/>
+                                </constraints>
+                                <state key="normal" image="icons8-Search-96"/>
+                                <connections>
+                                    <action selector="searchNearby:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4h0-e7-3nR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aqa-ti-cXT" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="5eQ-2x-B9F"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="67H-Ic-YQ9" secondAttribute="bottom" id="9G0-ae-MxY"/>
+                            <constraint firstItem="0yE-NT-Hvp" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="FHo-Hu-Tt9"/>
+                            <constraint firstAttribute="trailing" secondItem="67H-Ic-YQ9" secondAttribute="trailing" id="WGl-18-pV9"/>
+                            <constraint firstItem="67H-Ic-YQ9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="avt-CN-Aee"/>
+                            <constraint firstItem="67H-Ic-YQ9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hhc-lH-nw5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0yE-NT-Hvp" secondAttribute="bottom" constant="20" id="pcz-vl-6Wa"/>
+                            <constraint firstItem="0yE-NT-Hvp" firstAttribute="top" secondItem="aqa-ti-cXT" secondAttribute="bottom" constant="20" id="wst-kP-7tK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="67H-Ic-YQ9" id="Ix1-Z0-yeq"/>
+                        <outlet property="searchDisplayController" destination="Jdn-0l-4dY" id="R0i-Jh-e95"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Jdn-0l-4dY">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="3YO-eu-aXJ"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="B0g-yA-CfP"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="cYq-vn-tTv"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="2po-g1-j0i"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icons8-Search-96" width="96" height="96"/>
+        <image name="locationButton" width="67" height="67"/>
+    </resources>
+</document>
