@@ -12,5 +12,8 @@ target 'WhatDoYouWanTtoEat' do
     pod 'Firebase/Core'
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
+    
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
 
 end

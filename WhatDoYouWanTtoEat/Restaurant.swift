@@ -9,24 +9,27 @@
 import Foundation
 
 class Restaurant {
-    var name = ""
-    var type = ""
-    var location = ""
-    var image = ""
-    var isVisited = false
-    var phone = ""
-    var rating = ""
+    var name: String?
+    var latitude: Double?
+    var longtitude: Double?
+//    var type: String?
+    var openNow: Bool?
+    var photoRef: String?
+    var placeID: String?
+    var rating: Double?
+    var vicinity: String?
     
-    init(name: String, type: String, location: String, image: String, phone: String, rating: String) {
+    init(name: String?, latitude: Double?, longtitude: Double?, openNow: Bool?, photoRef: String?, placeID: String?, rating: Double?, vicinity: String?) {
         self.name = name
-        self.type = type
-        self.location = location
-        self.image = image
-        self.phone = phone
+        self.latitude = latitude
+        self.longtitude = longtitude
+//        self.type = type
+        self.openNow = openNow
+        self.photoRef = photoRef
+        self.placeID = placeID
         self.rating = rating
+        self.vicinity = vicinity
     }
     
-    func visit() {
-        self.isVisited = true
-    }
+
 }

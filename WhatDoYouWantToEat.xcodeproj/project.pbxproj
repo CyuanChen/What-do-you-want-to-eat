@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3846D3EA1FFB293B00F1CEA3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3846D3E91FFB293B00F1CEA3 /* GoogleService-Info.plist */; };
 		3846D3EC1FFB299800F1CEA3 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846D3EB1FFB299800F1CEA3 /* SecretKey.swift */; };
+		3846D3EE1FFB2E1900F1CEA3 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846D3ED1FFB2E1900F1CEA3 /* GoogleMapViewController.swift */; };
+		3846D3F01FFB311B00F1CEA3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3846D3EF1FFB311B00F1CEA3 /* GoogleService-Info.plist */; };
+		3846D3F21FFB333800F1CEA3 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3846D3F11FFB333800F1CEA3 /* DataService.swift */; };
 		387CBCA81F5D2518003BAACF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387CBCA71F5D2518003BAACF /* AppDelegate.swift */; };
 		387CBCAD1F5D2518003BAACF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 387CBCAB1F5D2518003BAACF /* Main.storyboard */; };
 		387CBCAF1F5D2518003BAACF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 387CBCAE1F5D2518003BAACF /* Assets.xcassets */; };
@@ -19,8 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3846D3E91FFB293B00F1CEA3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3846D3EB1FFB299800F1CEA3 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		3846D3ED1FFB2E1900F1CEA3 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
+		3846D3EF1FFB311B00F1CEA3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3846D3F11FFB333800F1CEA3 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		387CBCA41F5D2518003BAACF /* WhatDoYouWanTtoEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatDoYouWanTtoEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		387CBCA71F5D2518003BAACF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		387CBCAC1F5D2518003BAACF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,7 +71,7 @@
 		387CBCA61F5D2518003BAACF /* WhatDoYouWanTtoEat */ = {
 			isa = PBXGroup;
 			children = (
-				3846D3E91FFB293B00F1CEA3 /* GoogleService-Info.plist */,
+				3846D3EF1FFB311B00F1CEA3 /* GoogleService-Info.plist */,
 				387CBCA71F5D2518003BAACF /* AppDelegate.swift */,
 				387CBCAB1F5D2518003BAACF /* Main.storyboard */,
 				387CBCB91F5D322C003BAACF /* MapViewController.swift */,
@@ -76,6 +80,8 @@
 				387CBCB01F5D2518003BAACF /* LaunchScreen.storyboard */,
 				387CBCB31F5D2518003BAACF /* Info.plist */,
 				3846D3EB1FFB299800F1CEA3 /* SecretKey.swift */,
+				3846D3ED1FFB2E1900F1CEA3 /* GoogleMapViewController.swift */,
+				3846D3F11FFB333800F1CEA3 /* DataService.swift */,
 			);
 			path = WhatDoYouWanTtoEat;
 			sourceTree = "<group>";
@@ -127,7 +133,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = PeterChen;
 				TargetAttributes = {
 					387CBCA31F5D2518003BAACF = {
@@ -137,7 +143,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 387CBC9F1F5D2518003BAACF /* Build configuration list for PBXProject "WhatDoYouWanTtoEat" */;
+			buildConfigurationList = 387CBC9F1F5D2518003BAACF /* Build configuration list for PBXProject "WhatDoYouWantToEat" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -161,8 +167,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				387CBCB21F5D2518003BAACF /* LaunchScreen.storyboard in Resources */,
-				3846D3EA1FFB293B00F1CEA3 /* GoogleService-Info.plist in Resources */,
 				387CBCAF1F5D2518003BAACF /* Assets.xcassets in Resources */,
+				3846D3F01FFB311B00F1CEA3 /* GoogleService-Info.plist in Resources */,
 				387CBCAD1F5D2518003BAACF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,8 +228,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3846D3EE1FFB2E1900F1CEA3 /* GoogleMapViewController.swift in Sources */,
 				387CBCBC1F5D323E003BAACF /* Restaurant.swift in Sources */,
 				3846D3EC1FFB299800F1CEA3 /* SecretKey.swift in Sources */,
+				3846D3F21FFB333800F1CEA3 /* DataService.swift in Sources */,
 				387CBCBA1F5D322C003BAACF /* MapViewController.swift in Sources */,
 				387CBCA81F5D2518003BAACF /* AppDelegate.swift in Sources */,
 			);
@@ -261,7 +269,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -269,7 +279,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -312,7 +326,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -320,7 +336,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -354,7 +374,7 @@
 				DEVELOPMENT_TEAM = L6VPYXD3CW;
 				INFOPLIST_FILE = WhatDoYouWanTtoEat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Peter.WhatDoYouWanTtoEat;
+				PRODUCT_BUNDLE_IDENTIFIER = PeterChen.io.WhatDoYouWantToEat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -368,7 +388,7 @@
 				DEVELOPMENT_TEAM = L6VPYXD3CW;
 				INFOPLIST_FILE = WhatDoYouWanTtoEat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Peter.WhatDoYouWanTtoEat;
+				PRODUCT_BUNDLE_IDENTIFIER = PeterChen.io.WhatDoYouWantToEat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -377,7 +397,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		387CBC9F1F5D2518003BAACF /* Build configuration list for PBXProject "WhatDoYouWanTtoEat" */ = {
+		387CBC9F1F5D2518003BAACF /* Build configuration list for PBXProject "WhatDoYouWantToEat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				387CBCB41F5D2518003BAACF /* Debug */,

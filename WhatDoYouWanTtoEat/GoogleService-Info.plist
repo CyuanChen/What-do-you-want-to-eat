@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>7015450377-c5kg2jr25nev1qqnnvifm1bni76fadm7.apps.googleusercontent.com</string>
+	<string>356799047006-15gjju6e6avtqs007htjcjf1mrqoif0u.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.7015450377-c5kg2jr25nev1qqnnvifm1bni76fadm7</string>
+	<string>com.googleusercontent.apps.356799047006-15gjju6e6avtqs007htjcjf1mrqoif0u</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAqEOL8C4SyGBgAE1qqUKIXcEzwMCcdb78</string>
+	<string>AIzaSyCDRSgdLdZPDVFuFe7m4HNUC40MJOlbcgk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>7015450377</string>
+	<string>356799047006</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>Peter.io.WhatDoYouWanTtoEat</string>
+	<string>PeterChen.io.WhatDoYouWantToEat</string>
 	<key>PROJECT_ID</key>
-	<string>what-do-you-want-to-eat-2e67f</string>
+	<string>what-do-you-want-to-eat-e1d56</string>
 	<key>STORAGE_BUCKET</key>
-	<string>what-do-you-want-to-eat-2e67f.appspot.com</string>
+	<string>what-do-you-want-to-eat-e1d56.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:7015450377:ios:de148c6aed565fa9</string>
+	<string>1:356799047006:ios:b61972fe52c2ee07</string>
 	<key>DATABASE_URL</key>
-	<string>https://what-do-you-want-to-eat-2e67f.firebaseio.com</string>
+	<string>https://what-do-you-want-to-eat-e1d56.firebaseio.com</string>
 </dict>
 </plist>
