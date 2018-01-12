@@ -11,7 +11,7 @@ import Foundation
 class Restaurant {
     var name: String?
     var latitude: Double?
-    var longtitude: Double?
+    var longitude: Double?
 //    var type: String?
     var openNow: Bool?
     var photoRef: String?
@@ -19,10 +19,10 @@ class Restaurant {
     var rating: Double?
     var vicinity: String?
     
-    init(name: String?, latitude: Double?, longtitude: Double?, openNow: Bool?, photoRef: String?, placeID: String?, rating: Double?, vicinity: String?) {
+    init(name: String?, latitude: Double?, longitude: Double?, openNow: Bool?, photoRef: String?, placeID: String?, rating: Double?, vicinity: String?) {
         self.name = name
         self.latitude = latitude
-        self.longtitude = longtitude
+        self.longitude = longitude
 //        self.type = type
         self.openNow = openNow
         self.photoRef = photoRef

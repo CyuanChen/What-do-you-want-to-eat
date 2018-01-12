@@ -23,6 +23,7 @@ class DataService {
         }
     }
     func getGoogleMapUrlWithPageToken(pageToken token: String) -> String{
+        print("token: https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(token)&key=\(placeUrlAPI)")
         return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(token)&key=\(placeUrlAPI)"
     }
     

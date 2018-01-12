@@ -21,7 +21,8 @@ class MapViewController: UIViewController {
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Int = 1000 // 1 km
     var currentLocation: CLLocationCoordinate2D?
-    var restaurantArray: [Restaurant]?
+    var restaurantArray: [Restaurant]? = []
+    var nextPageCount: Int = 0
     
     
     override func viewDidLoad() {
@@ -55,15 +56,13 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func searchNearby(_ sender: Any) {
-//        findRestaurantNearby()
-       
-        findRestaurant(withNextPageToken: nil)
+//        findRestaurant()
+//        DispatchQueue.main.sync {
+            findRestaurant()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
+            self.pinRestaurant()
+        }
     }
-
-    
-
-   
-
 }
 
 extension MapViewController: MKMapViewDelegate
@@ -117,83 +116,133 @@ extension MapViewController: MKMapViewDelegate
             mapView.removeAnnotation(annotation)
         }
     }
-    func retriveUrls(forLocation location: CLLocationCoordinate2D, withRadius radius: Double, andSearchType: String) {
-        
-    }
     
-    func findRestaurant(withNextPageToken token: String?) {
-        let mapUrl: String = DataService.instance.getGoogleMapUrl(searchLocation: currentLocation, searchRadius: regionRadius, searchType: "restaurant")
-        print(mapUrl)
-        
-        if token != nil{
-            Alamofire.request(DataService.instance.getGoogleMapUrlWithPageToken(pageToken: token!)).responseJSON(completionHandler: { (response) in
-                if response.result.isSuccess {
-                    let json: JSON = JSON(data: response.data!)
-                    print("PAGEEEE TOKEEN\(json["next_page_token"].string)")
-                    if let nextPageToken = json["next_page_token"].string {
+    func nextPageRestaurant(withToken token: String) {
+        print("Next Page")
+        let nextPageToken = DataService.instance.getGoogleMapUrlWithPageToken(pageToken: token)
+//        print(" ha next page token: \(nextPageToken)")
+        Alamofire.request(nextPageToken).responseJSON(completionHandler: { (response) in
+            if response.result.isSuccess {
+                print("Response status: \(JSON(response.data!)["status"])")
+                let json: JSON = JSON(data: response.data!)
+                if json["status"].string != "OK" {
+                    if self.nextPageCount > 5 {
+                        print("Status is not OK, but finish.")
+                    } else {
+                        print("Status is not OK, try again")
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+                            self.nextPageRestaurant(withToken: token)
+                            self.nextPageCount += 1
+                        })
                         
-                        self.findRestaurant(withNextPageToken: nextPageToken)
+                    }
+                } else {
+                    print("Status OK")
+                    if let nextPageToken = json.dictionaryValue["next_page_token"]?.string {
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+                            self.nextPageRestaurant(withToken: nextPageToken)
+                        })
+                        
                     } else {
                         print("Response token error \(String(describing: response.error))")
                     }
                     if let result = json["results"].array {
-                        
                         for data in result {
-                            //                        var restaurant: Restaurant?
                             let name = data["name"].string
-                            let latitude = data["geometry"]["location"]["latitude"].double
-                            let longtitude = data["geometry"]["location"]["longtitude"].double
+                            let latitude = data["geometry"]["location"]["lat"].double ?? 0
+                            let longitude = data["geometry"]["location"]["lng"].double ?? 0
                             let openNow = data["opening_hours"]["open_now"].bool
                             let photoRef = data["photos"]["photo_reference"].string
                             let placeID = data["place_id"].string
                             let rating = data["rating"].double
                             let vicinity = data["vicinity"].string
-                            let restaurant = Restaurant(name: name, latitude: latitude, longtitude: longtitude, openNow: openNow, photoRef: photoRef, placeID: placeID, rating: rating, vicinity: vicinity)
-                            print("Restaurant \(restaurant.name)")
-                            print(data["name"].string)
+                            let restaurant = Restaurant(name: name, latitude: latitude, longitude: longitude, openNow: openNow, photoRef: photoRef, placeID: placeID, rating: rating, vicinity: vicinity)
+                            self.restaurantArray?.append(restaurant)
+                            print("Restaurant Array: \(self.restaurantArray)")
                         }
-                    }
-                } else {
-                    print("error: \(String(describing: response.error))")
-                }
-            })
-        } else {
-            Alamofire.request(DataService.instance.getGoogleMapUrl(searchLocation: currentLocation, searchRadius: regionRadius, searchType: "restaurant")).responseJSON { (response) in
-                if response.result.isSuccess {
-                    let json: JSON = JSON(data: response.data!)
-                    print("PAGGGE\(json["next_page_token"])")
-                    print(json)
-                    if let nextPageToken = json["next_page_token"].string {
-                        self.findRestaurant(withNextPageToken: nextPageToken)
                     } else {
-                        print("Response token error \(String(describing: response.error))")
+                    print("Alamofire Error: \(String(describing: response.error))")
                     }
-                    if let result = json["results"].array {
-                        
-                        for data in result {
-                            //                        var restaurant: Restaurant?
-                            let name = data["name"].string
-                            let latitude = data["geometry"]["location"]["latitude"].double
-                            let longtitude = data["geometry"]["location"]["longtitude"].double
-                            let openNow = data["opening_hours"]["open_now"].bool
-                            let photoRef = data["photos"]["photo_reference"].string
-                            let placeID = data["place_id"].string
-                            let rating = data["rating"].double
-                            let vicinity = data["vicinity"].string
-                            let restaurant = Restaurant(name: name, latitude: latitude, longtitude: longtitude, openNow: openNow, photoRef: photoRef, placeID: placeID, rating: rating, vicinity: vicinity)
-                            print("Restaurant \(String(describing: restaurant.name))")
-                            print(data["name"].string as Any)
-                        }
-                    }
-                } else {
-                    print("error: \(String(describing: response.error))")
+                print("Alamorire finish")
                 }
             }
+        })
+    }
+    
+    func findRestaurant() {
+        // clean the restaurant list
+        self.restaurantArray?.removeAll()
+        nextPageCount = 0
+        
+        let mapUrl: String = DataService.instance.getGoogleMapUrl(searchLocation: currentLocation, searchRadius: regionRadius, searchType: "restaurant")
+        print(mapUrl)
+        print("first page")
+        Alamofire.request(DataService.instance.getGoogleMapUrl(searchLocation: currentLocation, searchRadius: regionRadius, searchType: "restaurant")).responseJSON { (response) in
+            if response.result.isSuccess {
+                let json: JSON = JSON(data: response.data!)
+                if let nextPageToken = json.dictionaryValue["next_page_token"]?.string {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+                        self.nextPageRestaurant(withToken: nextPageToken)
+                    })
+                } else {
+                    print("Response token error \(String(describing: response.error))")
+                }
+                if let result = json["results"].array {
+                    
+                    for data in result {
+                        let name = data["name"].string
+                        let latitude = data["geometry"]["location"]["lat"].double! ?? 0
+                        let longitude = data["geometry"]["location"]["lng"].double ?? 0
+                        let openNow = data["opening_hours"]["open_now"].bool
+                        let photoRef = data["photos"]["photo_reference"].string
+                        let placeID = data["place_id"].string
+                        let rating = data["rating"].double
+                        let vicinity = data["vicinity"].string
+                        let restaurant = Restaurant(name: name, latitude: latitude, longitude: longitude, openNow: openNow, photoRef: photoRef, placeID: placeID, rating: rating, vicinity: vicinity)
+                        DispatchQueue.main.async {
+                            print("Res:\(restaurant.name)")
+                            self.restaurantArray?.append(restaurant)
+                            print("Arr: \(self.restaurantArray?.count)")
+                        }
+                        print("Restaurant \(restaurant.name!)")
+                    }
+                }
+            } else {
+                print("Alamofire Error: \(String(describing: response.error))")
+            }
+        }
+    }
+    func pinRestaurant() {
+        removePin()
+        print("pinnnnn")
+        if restaurantArray != nil {
+            print("restaurant not nil")
+            var nearbyAnnotation: [MKAnnotation] = []
+            if let resArr = restaurantArray {
+                print("Unwrap res")
+                for item in resArr {
+                    let annotation = MKPointAnnotation()
+                    annotation.title = item.name
+                    print("Item name \(item.name)")
+                    annotation.subtitle = "Opening: \(item.openNow!)"
+                    print("Lat: \(item.latitude), Long:\(item.longitude)")
+                    annotation.coordinate.latitude = item.latitude!
+                    annotation.coordinate.longitude = item.longitude!
+                    nearbyAnnotation.append(annotation)
+                }
+                self.mapView.showAnnotations(nearbyAnnotation, animated: true)
+            } else {
+                print("Restaurant problem")
+            }
             
+            
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                self.pinRestaurant()
+            })
         }
         
     }
-    
     
     func findRestaurantNearby() {
         removePin()
@@ -279,56 +328,6 @@ extension MapViewController: CLLocationManagerDelegate
         centerMapOnUserLocation()
     }
 }
-
-
-
-
-//    func searchNearrrr() {
-//        removePin()
-//        let searchRequest = MKLocalSearchRequest()
-//        searchRequest.naturalLanguageQuery = "餐廳"
-//        searchRequest.region = mapView.region
-//        print("\(mapView.region) mapView region")
-//        print("\(mapView.region.center) center")
-//
-//        let localSearch = MKLocalSearch(request: searchRequest)
-//        localSearch.start { (response, error) -> Void in
-//            guard let response = response else {
-//                if let error = error {
-//                    print(error)
-//                }
-//
-//                return
-//            }
-//
-//            let mapItems = response.mapItems
-//            var nearbyAnnotations: [MKAnnotation] = []
-//            if mapItems.count > 0 {
-//                for item in mapItems {
-//                    // Add annotation
-//                    let annotation = MKPointAnnotation()
-//                    annotation.title = item.name
-//                    annotation.subtitle = item.placemark.title
-//                    print(item.name)
-//                    if let location = item.placemark.location {
-//                        annotation.coordinate = location.coordinate
-//                    }
-//                    nearbyAnnotations.append(annotation)
-//                }
-//            }
-//
-//            self.mapView.showAnnotations(nearbyAnnotations, animated: true)
-//        }
-//    }
-
-
-
-
-
-
-
-
-
 
 
 
