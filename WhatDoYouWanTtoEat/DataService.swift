@@ -19,7 +19,7 @@ class DataService {
         if let location = location {
             return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.latitude),\(location.longitude)&radius=\(radius)&type=\(type)&key=\(placeUrlAPI)"
         } else {
-            return "hhhhh"
+            return "Not yet load location"
         }
     }
     func getGoogleMapUrlWithPageToken(pageToken token: String) -> String{
